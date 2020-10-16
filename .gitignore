@@ -1,0 +1,17 @@
+.storage/
+.env
+.env*
+.cache/
+.DS_Store
+.idea/
+
+node_modules/
+build/
+
+logs
+*.log
+
+yarn-debug.log*
+yarn-error.log*
+.vscode/launch.json
+.prettierrc
