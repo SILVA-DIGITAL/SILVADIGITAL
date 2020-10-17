@@ -12,8 +12,8 @@ interface IState {
 
 interface IReducerAction {
   type: string
-  payload?: any
-  authData: any
+  payload?: Record<string, unknown>
+  authData: Record<string, unknown>
 }
 
 export { IAuthInitialState, IState, IReducerAction }

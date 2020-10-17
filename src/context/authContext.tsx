@@ -2,7 +2,7 @@ import React, { FC, createContext, useReducer } from 'react'
 import authReducer, { authInitialState } from '~reducers/authReducer'
 import { TState, IAuthProvider } from './types'
 
-export const AuthContext = createContext<[TState, React.Dispatch<any>]>(undefined)
+export const AuthContext = createContext<[TState, React.Dispatch<unknown>]>(undefined)
 
 export const AuthProvider: FC<IAuthProvider> = props => {
   const authData = useReducer(authReducer, authInitialState)

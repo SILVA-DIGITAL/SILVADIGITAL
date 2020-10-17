@@ -1,0 +1,5 @@
+node_modules/
+build/*
+public/*
+webpack*.*
+src/assets/images/*

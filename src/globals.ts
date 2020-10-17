@@ -4,4 +4,4 @@ export enum loadingState {
   ERROR = 'ERROR',
   SUCCESS = 'SUCCESS',
 }
-export default loadingState;
+export default loadingState

@@ -10,7 +10,7 @@ type TState = {
 }
 
 interface IAuthProvider {
-  children: any
+  children: React.ReactNode
 }
 
 export { IAuthContext, TState, IAuthProvider }

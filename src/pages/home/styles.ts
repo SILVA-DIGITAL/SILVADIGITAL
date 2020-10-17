@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Form, Row } from 'react-bootstrap';
 
 export const StyledRow = styled(Row)`
