@@ -30,7 +30,8 @@ module.exports = {
     'prettier',
     '@typescript-eslint',
     'react',
-    'react-hooks'
+    'react-hooks',
+    'jsx-a11y'
   ],
   env: {
     es6: true,
