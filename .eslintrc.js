@@ -24,7 +24,7 @@ module.exports = {
       impliedStrict: true,
       jsx: true,
       arrowFunction: true,
-    }
+    },
   },
   plugins: [
     'prettier',
@@ -40,6 +40,10 @@ module.exports = {
     commonjs: true,
   },
   rules: {
+    'no-console': 1,
+    'no-debugger': 1,
+    'no-var': 1,
+    'no-trailing-spaces': ['error', { 'ignoreComments': true }],
     'consistent-return': 1,
     'arrow-body-style': [2, 'as-needed'],
     'import/no-unresolved': 0,
