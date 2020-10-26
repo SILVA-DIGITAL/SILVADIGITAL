@@ -99,6 +99,7 @@ const config: webpack.Configuration = {
     stats: 'minimal',
     clientLogLevel: 'warning',
     hot: true,
+    port: 1337
   },
 }
 

@@ -4,48 +4,22 @@ import { Canvas, useLoader } from 'react-three-fiber'
 import { useTransition, animated } from 'react-spring'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { OrbitControls, draco } from 'drei'
+import { Loader } from '~components/Loader'
 
 const Home: FC = () => {
 
-function Model({ url }) {
-  const { nodes, materials } = useLoader(GLTFLoader, url, draco())
-  return (
-    <group rotation={[-Math.PI / 2, 0, 0]} position={[0, -7, 0]} scale={[7, 7, 7]}>
-      <group rotation={[Math.PI / 13.5, -Math.PI / 5.8, Math.PI / 5.6]}>
-        <mesh castShadow receiveShadow geometry={nodes.planet001.geometry} material={materials.scene} />
-        <mesh castShadow receiveShadow geometry={nodes.planet002.geometry} material={materials.scene} />
+  const Model = ({ url }: any) => {
+    // @ts-ignore
+    const { nodes, materials } = useLoader(GLTFLoader, url, draco())
+    return (
+      <group rotation={[-Math.PI / 2, 0, 0]} position={[0, -7, 0]} scale={[7, 7, 7]}>
+        <group rotation={[Math.PI / 13.5, -Math.PI / 5.8, Math.PI / 5.6]}>
+          <mesh castShadow receiveShadow geometry={nodes.planet001.geometry} material={materials.scene} />
+          <mesh castShadow receiveShadow geometry={nodes.planet002.geometry} material={materials.scene} />
+        </group>
       </group>
-    </group>
-  )
-}
-
-function Loading() {
-  const [finished, set] = useState(false)
-  const [width, setWidth] = useState(0)
-
-  useEffect(() => {
-    THREE.DefaultLoadingManager.onLoad = () => set(true)
-    THREE.DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) =>
-      setWidth((itemsLoaded / itemsTotal) * 200)
-  }, [])
-
-  const props = useTransition(finished, null, {
-    from: { opacity: 1, width: 0 },
-    leave: { opacity: 0 },
-    update: { width },
-  })
-
-  return props.map(
-    ({ item: finished, key, props: { opacity, width } }) =>
-      !finished && (
-        <animated.div className="loading" key={key} style={{ opacity }}>
-          <div className="loading-bar-container">
-            <animated.div className="loading-bar" style={{ width }} />
-          </div>
-        </animated.div>
-      ),
-  )
-}
+    )
+  }
   
   return (
     <>
@@ -84,7 +58,7 @@ function Loading() {
         />
       </Canvas>
       <div className="layer" />
-      <Loading />
+      <Loader />
       <a href="https://github.com/drcmda/learnwithjason" className="top-left" children="Github" />
       <a href="https://twitter.com/0xca0a" className="top-right" children="Twitter" />
       <a href="https://github.com/drcmda/react-three-fiber" className="bottom-left" children="+ react-three-fiber" />
