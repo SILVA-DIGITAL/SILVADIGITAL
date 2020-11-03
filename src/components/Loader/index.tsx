@@ -17,7 +17,6 @@ export const Loader = () => {
     update: { width },
   })
 
-  // @ts-ignore
   return props.map(
     ({ item: finished, key, props: { opacity, width } }) =>
       !finished && (
