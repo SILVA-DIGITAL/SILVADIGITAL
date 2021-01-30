@@ -1,67 +1,70 @@
-import * as THREE from 'three'
-import React, { FC, Suspense, useState, useEffect } from 'react'
-import { Canvas, useLoader } from 'react-three-fiber'
-import { useTransition, animated } from 'react-spring'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { OrbitControls, draco } from 'drei'
-import { Loader } from '~components/Loader'
+// @ts-nocheck
+import React, { Suspense } from 'react'
+import { Canvas } from 'react-three-fiber'
+import { Environment } from '@react-three/drei/Environment'
+import { Loader } from '@react-three/drei'
+import { useTransition, useSpring } from '@react-spring/core'
+import { useLocation } from 'wouter'
+import { Container, Jumbo } from './styles'
+import Shapes from '~components/Shapes'
+import Nav from '~components/Nav'
 
-const Home: FC = () => {
+const jumbo = {
+  '/': ['The sun', 'is its father.'],
+  '/knot': ['The moon', 'its mother.'],
+  '/bomb': ['The wind', 'hath carried it', 'in its belly.'],
+}
 
-  const Model = ({ url }: any) => {
-    // @ts-ignore
-    const { nodes, materials } = useLoader(GLTFLoader, url, draco())
-    return (
-      <group rotation={[-Math.PI / 2, 0, 0]} position={[0, -7, 0]} scale={[7, 7, 7]}>
-        <group rotation={[Math.PI / 13.5, -Math.PI / 5.8, Math.PI / 5.6]}>
-          <mesh castShadow receiveShadow geometry={nodes.planet001.geometry} material={materials.scene} />
-          <mesh castShadow receiveShadow geometry={nodes.planet002.geometry} material={materials.scene} />
-        </group>
-      </group>
-    )
-  }
-  
+function Text({ children, opacity, background }) {
+  return (
+    <Box style={{ opacity }}>
+      {React.Children.toArray(children).map((text, index) => (
+        <Line key={index} style={{ transform: opacity.to(t => `translate3d(0,${index * -50 + (1 - t) * ((1 + index) * 40)}px,0)`) }}>
+          <div>{text}</div>
+          <Cover style={{ background, transform: opacity.to(t => `translate3d(0,${t * 100}%,0) rotateZ(-10deg)`) }} />
+        </Line>
+      ))}
+    </Box>
+  )
+}
+
+const Home = () => {
+  // Current route
+  const [location] = useLocation()
+
+  // Animated background color
+  const props = useSpring({
+    background: location === '/' ? 'white' : location === '/knot' ? '#272730' : '#ffcc6d',
+    color: location === '/' ? 'black' : location === '/knot' ? 'white' : 'white',
+  })
+
+  // Animated shape props
+  const transition = useTransition(location, {
+    from: { position: [0, 0, -20], rotation: [0, Math.PI, 0], scale: [0, 0, 0], opacity: 0 },
+    enter: { position: [0, 0, 0], rotation: [0, 0, 0], scale: [1, 1, 1], opacity: 1 },
+    leave: { position: [0, 0, -10], rotation: [0, -Math.PI, 0], scale: [0, 0, 0], opacity: 0 },
+    config: () => n => n === 'opacity' && { friction: 60 },
+  })
+
   return (
     <>
-      <div className="bg" />
-      <h1>
-        LEARN
-        <br />
-        <span>w/JASON</span>
-      </h1>
-      <Canvas shadowMap camera={{ position: [0, 0, 15] }}>
-        <ambientLight intensity={0.75} />
-        <pointLight intensity={1} position={[-10, -25, -10]} />
-        <spotLight
-          castShadow
-          intensity={2.25}
-          angle={0.2}
-          penumbra={1}
-          position={[25, 25, 25]}
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
-          shadow-bias={-0.0001}
-        />
-        <fog attach="fog" args={['#cc7b32', 16, 20]} />
+      <Container style={{ ...props }}>
+        <Jumbo>
+          {transition((style, location) => (
+            <Text open={true} t={style.t} opacity={style.opacity} background={props.background} children={jumbo[location]} />
+          ))}
+        </Jumbo>
+      </Container>
+      <Canvas concurrent camera={{ position: [0, 0, 20], fov: 50 }} onCreated={({ gl }) => (gl.toneMappingExposure = 1.5)}>
+        <spotLight position={[0, 30, 40]} />
+        <spotLight position={[-50, 30, 40]} />
         <Suspense fallback={null}>
-          <Model url="assets/models/scene-draco.gltf" />
+          <Shapes transition={transition} />
+          <Environment files="photo_studio_01_1k.hdr" />
         </Suspense>
-        <OrbitControls
-          autoRotate
-          enablePan={false}
-          enableZoom={false}
-          enableDamping
-          dampingFactor={0.5}
-          rotateSpeed={1}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
-        />
       </Canvas>
-      <div className="layer" />
+      <Nav style={{ color: props.color }} />
       <Loader />
-      <a href="https://github.com/drcmda/learnwithjason" className="top-left" children="Github" />
-      <a href="https://twitter.com/0xca0a" className="top-right" children="Twitter" />
-      <a href="https://github.com/drcmda/react-three-fiber" className="bottom-left" children="+ react-three-fiber" />
     </>
   )
 }

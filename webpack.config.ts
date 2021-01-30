@@ -31,6 +31,7 @@ const config: webpack.Configuration = {
   target: 'web',
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
+    // @ts-ignore
     plugins: [new TsConfigPathsPlugin()],
     alias: {
       'react-dom': '@hot-loader/react-dom',

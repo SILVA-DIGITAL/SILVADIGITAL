@@ -13,8 +13,6 @@
     "lib": ["ES6", "ES7", "DOM", "ESNext"],
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "noEmit": false,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -23,18 +21,12 @@
     "baseUrl": ".",
     "paths": {
       "~root/*": ["src/*"],
-      "~api/*": ["src/api/*"],
-      "~config/*": ["src/config/*"],
       "~components/*": ["src/components/*"],
       "~components": ["src/components"],
-      "~context/*": ["src/context/*"],
       "~images/*": ["src/assets/images/*"],
       "~pages/*": ["src/pages/*"],
       "~styles/*": ["src/styles/*"],
-      "~store/*": ["src/store/*"],
       "~routes/*": ["src/routes/*"],
-      "~reducers/*": ["src/reducers/*"],
-      "~utilities/*": ["src/utilities/*"],
     },
     "plugins": [{
       "name": "typescript-styled-plugin"

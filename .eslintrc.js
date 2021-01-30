@@ -61,6 +61,7 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.ts', '.tsx'] }],
     'react/jsx-indent': 0,
     'react/button-has-type': 1,
+    '@typescript-eslint/ban-ts-ignore': off,
     '@typescript-eslint/indent': 0,
     '@typescript-eslint/camelcase': 0,
     '@typescript-eslint/no-var-requires': 0,
