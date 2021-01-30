@@ -17,8 +17,8 @@ const jumbo = {
 
 function Text({ children, opacity, background }) {
   return (
-    <Box style={{ opacity }}>
-      {React.Children.toArray(children).map((text, index) => (
+    <Box style={{ opacity: number }}>
+      {React.Children.toArray(children).map((text: string, index: number) => (
         <Line key={index} style={{ transform: opacity.to(t => `translate3d(0,${index * -50 + (1 - t) * ((1 + index) * 40)}px,0)`) }}>
           <div>{text}</div>
           <Cover style={{ background, transform: opacity.to(t => `translate3d(0,${t * 100}%,0) rotateZ(-10deg)`) }} />
@@ -30,16 +30,16 @@ function Text({ children, opacity, background }) {
 
 const Home = () => {
   // Current route
-  const [location] = useLocation()
+  const [location] = useLocation<LocationState>()
 
   // Animated background color
-  const props = useSpring({
+  const props = useSpring<object>({
     background: location === '/' ? 'white' : location === '/knot' ? '#272730' : '#ffcc6d',
     color: location === '/' ? 'black' : location === '/knot' ? 'white' : 'white',
   })
 
   // Animated shape props
-  const transition = useTransition(location, {
+  const transition = useTransition<Transition>(location, {
     from: { position: [0, 0, -20], rotation: [0, Math.PI, 0], scale: [0, 0, 0], opacity: 0 },
     enter: { position: [0, 0, 0], rotation: [0, 0, 0], scale: [1, 1, 1], opacity: 1 },
     leave: { position: [0, 0, -10], rotation: [0, -Math.PI, 0], scale: [0, 0, 0], opacity: 0 },
@@ -48,6 +48,8 @@ const Home = () => {
 
   return (
     <>
+      <Loader />
+      <Nav style={{ color: props.color }} />
       <Container style={{ ...props }}>
         <Jumbo>
           {transition((style, location) => (
@@ -63,8 +65,6 @@ const Home = () => {
           <Environment files="photo_studio_01_1k.hdr" />
         </Suspense>
       </Canvas>
-      <Nav style={{ color: props.color }} />
-      <Loader />
     </>
   )
 }
