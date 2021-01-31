@@ -13,6 +13,8 @@
     "lib": ["ES6", "ES7", "DOM", "ESNext"],
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": false,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

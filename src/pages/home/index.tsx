@@ -7,39 +7,27 @@ import { useTransition, useSpring } from '@react-spring/core'
 import { useLocation } from 'wouter'
 import { Container, Jumbo } from './styles'
 import Shapes from '~components/Shapes'
+import Text from '~components/Text'
 import Nav from '~components/Nav'
 
 const jumbo = {
-  '/': ['The sun', 'is its father.'],
+  '/': ['Welcome', 'I am creating', 'cool stuff'],
   '/knot': ['The moon', 'its mother.'],
-  '/bomb': ['The wind', 'hath carried it', 'in its belly.'],
-}
-
-function Text({ children, opacity, background }) {
-  return (
-    <Box style={{ opacity: number }}>
-      {React.Children.toArray(children).map((text: string, index: number) => (
-        <Line key={index} style={{ transform: opacity.to(t => `translate3d(0,${index * -50 + (1 - t) * ((1 + index) * 40)}px,0)`) }}>
-          <div>{text}</div>
-          <Cover style={{ background, transform: opacity.to(t => `translate3d(0,${t * 100}%,0) rotateZ(-10deg)`) }} />
-        </Line>
-      ))}
-    </Box>
-  )
+  '/hello': ['The wind', 'hath carried it', 'in its belly.'],
 }
 
 const Home = () => {
   // Current route
-  const [location] = useLocation<LocationState>()
+  const [location] = useLocation()
 
   // Animated background color
-  const props = useSpring<object>({
+  const props = useSpring({
     background: location === '/' ? 'white' : location === '/knot' ? '#272730' : '#ffcc6d',
     color: location === '/' ? 'black' : location === '/knot' ? 'white' : 'white',
   })
 
   // Animated shape props
-  const transition = useTransition<Transition>(location, {
+  const transition = useTransition(location, {
     from: { position: [0, 0, -20], rotation: [0, Math.PI, 0], scale: [0, 0, 0], opacity: 0 },
     enter: { position: [0, 0, 0], rotation: [0, 0, 0], scale: [1, 1, 1], opacity: 1 },
     leave: { position: [0, 0, -10], rotation: [0, -Math.PI, 0], scale: [0, 0, 0], opacity: 0 },
@@ -53,7 +41,7 @@ const Home = () => {
       <Container style={{ ...props }}>
         <Jumbo>
           {transition((style, location) => (
-            <Text open={true} t={style.t} opacity={style.opacity} background={props.background} children={jumbo[location]} />
+            <Text opacity={style.opacity} background={props.background} children={jumbo[location]} />
           ))}
         </Jumbo>
       </Container>

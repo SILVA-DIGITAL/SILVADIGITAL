@@ -1,11 +1,7 @@
-import * as THREE from 'three'
-import { MeshPhysicalMaterial } from 'three'
+import * as THREE from "three"
+import { MeshPhysicalMaterial } from "three"
 
-export default class Material extends MeshPhysicalMaterial {
-  _time
-  _distort
-  _radius
-
+export default class DistortMaterial extends MeshPhysicalMaterial {
   constructor(
     args = {
       metalness: 0.85,
@@ -37,7 +33,7 @@ export default class Material extends MeshPhysicalMaterial {
       ${shader.vertexShader}
     `
     shader.vertexShader = shader.vertexShader.replace(
-      '#include <begin_vertex>',
+      "#include <begin_vertex>",
       `
         vec2 p = vUv;
         float brightness = 0.;
@@ -66,7 +62,7 @@ export default class Material extends MeshPhysicalMaterial {
       ${shader.fragmentShader}
     `
     shader.fragmentShader = shader.fragmentShader.replace(
-      '#include <dithering_fragment>',
+      "#include <dithering_fragment>",
       `
       #include <dithering_fragment>
       float noise = snoise(vec3(gl_FragCoord.xyz / (1500.0) + time * 0.1));

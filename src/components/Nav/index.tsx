@@ -4,10 +4,11 @@ import { Link } from 'wouter'
 import { NavRight } from './styles'
 
 interface IProps {
-  position: string
-  bottom: string | number
-  left: string | number
-  transform: string
+  position?: string
+  bottom?: string | number
+  left?: string | number
+  transform?: string
+  style?: any
 }
 
 const Nav: FC<IProps> = props => (
