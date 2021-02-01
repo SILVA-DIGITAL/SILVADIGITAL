@@ -56,12 +56,17 @@ const config: webpack.Configuration = {
       { test: /\.html$/, use: 'html-loader' },
       { test: /\.(a?png)$/, use: 'url-loader?limit=10000' },
       {
-        test: /\.(jpe?g|gif|bmp|mp3|mp4|eot|ttf|woff|woff2)$/,
+        test: /\.(jpe?g|gif|hdr|glb|bmp|mp3|mp4|eot|ttf|woff|woff2)$/,
         use: 'file-loader',
       },
       {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
+      },
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
       },
     ],
   },

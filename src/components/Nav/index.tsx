@@ -1,24 +1,17 @@
 import React, { FC } from 'react'
-import { Badge } from '@pmndrs/branding'
 import { Link } from 'wouter'
 import { NavRight } from './styles'
-
 interface IProps {
-  position?: string
-  bottom?: string | number
-  left?: string | number
-  transform?: string
-  style?: any
+  location: string
 }
 
-const Nav: FC<IProps> = props => (
+const Nav: FC<IProps> = ({ location }) => (
   <>
-    <NavRight {...props}>
+    <NavRight className={location !== '/' ? 'alt' : ''}>
       <Link to="/">Torus</Link>
       <Link to="/knot">Knot</Link>
       <Link to="/bomb">Bomb</Link>
     </NavRight>
-    <Badge style={{ position: 'absolute', bottom: 25, left: '50%', transform: 'translate3d(-50%,0,0)' }} />
   </>
 )
 

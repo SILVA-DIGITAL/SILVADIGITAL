@@ -13,7 +13,7 @@ import Nav from '~components/Nav'
 const jumbo = {
   '/': ['Welcome', 'I am creating', 'cool stuff'],
   '/knot': ['The moon', 'its mother.'],
-  '/hello': ['The wind', 'hath carried it', 'in its belly.'],
+  '/bomb': ['The wind', 'hath carried it'],
 }
 
 const Home = () => {
@@ -21,9 +21,9 @@ const Home = () => {
   const [location] = useLocation()
 
   // Animated background color
-  const props = useSpring({
+  const springProps = useSpring({
     background: location === '/' ? 'white' : location === '/knot' ? '#272730' : '#ffcc6d',
-    color: location === '/' ? 'black' : location === '/knot' ? 'white' : 'white',
+    color: location === '/' ? 'black' : 'white',
   })
 
   // Animated shape props
@@ -37,11 +37,10 @@ const Home = () => {
   return (
     <>
       <Loader />
-      <Nav style={{ color: props.color }} />
-      <Container style={{ ...props }}>
+      <Container style={{ ...springProps }}>
         <Jumbo>
           {transition((style, location) => (
-            <Text opacity={style.opacity} background={props.background} children={jumbo[location]} />
+            <Text opacity={style.opacity} background={springProps.background} children={jumbo[location]} />
           ))}
         </Jumbo>
       </Container>
@@ -50,9 +49,10 @@ const Home = () => {
         <spotLight position={[-50, 30, 40]} />
         <Suspense fallback={null}>
           <Shapes transition={transition} />
-          <Environment files="photo_studio_01_1k.hdr" />
+          <Environment files="./assets/images/photo_studio_01_1k.hdr" />
         </Suspense>
       </Canvas>
+      <Nav location={location} />
     </>
   )
 }

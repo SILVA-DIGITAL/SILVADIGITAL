@@ -17,18 +17,23 @@ type GLTFResult = GLTF & {
 }
 
 const Shapes: FC = ({ transition }: any) => {
-  const { nodes } = useGLTF('/bomb-gp.glb') as GLTFResult
+  const { nodes } = useGLTF('/assets/models/bomb-gp.glb') as GLTFResult
   const torus = new THREE.TorusBufferGeometry(4, 1.2, 128, 128)
   const torusknot = new THREE.TorusKnotBufferGeometry(3, 0.8, 256, 16)
   const material1 = new Material()
   const material2 = new Material()
   const material3 = new Material()
-  const textures = useTexture(['/ao.jpg', '/normal.jpg', '/height.png', '/roughness.jpg'] as any[string])
+  const textures = useTexture([
+    '/assets/images/ao.jpg',
+    '/assets/images/normal.jpg',
+    '/assets/images/height.png',
+    '/assets/images/roughness.jpg',
+  ] as any[string])
 
-  useLayoutEffect(() => {
-    // @ts-ignore
-    textures.forEach(texture => ((texture.wrapT = texture.wrapS = THREE.RepeatWrapping), texture.repeat.set(4, 4)))
-  }, [textures])
+  // useLayoutEffect(() => {
+  //   // @ts-ignore
+  //   textures.forEach(texture => ((texture.wrapT = texture.wrapS = THREE.RepeatWrapping), texture.repeat.set(4, 4)))
+  // }, [textures])
 
   return transition(({ opacity, ...props }: any, location: string) => (
     <a.group {...props}>
