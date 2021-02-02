@@ -6,7 +6,7 @@
   </a>
 </p>
 <p align="center">
-    <img src="https://img.shields.io/badge/yarn-v1.19.1-green.svg" />
+    <img src="https://img.shields.io/badge/yarn-v1.22.10-green.svg" />
     <img src="https://img.shields.io/badge/node-v14.5.0-green.svg" />
     <img src="https://img.shields.io/badge/react-v17.0.1-green.svg" />
     <img src="https://img.shields.io/badge/three-v0.124.0-green.svg" />
