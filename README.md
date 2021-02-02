@@ -10,7 +10,6 @@
     <img src="https://img.shields.io/badge/node-v14.5.0-green.svg" />
     <img src="https://img.shields.io/badge/react-v17.0.1-green.svg" />
     <img src="https://img.shields.io/badge/three-v0.124.0-green.svg" />
-    <img src="https://img.shields.io/badge/reactthreefiber-v5.3.18-green.svg" />
 </p>
 
 ## Table of Contents
