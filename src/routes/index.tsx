@@ -1,13 +1,19 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'wouter'
 import Home from '~pages/Home'
 
 export const Routes = () => (
-  <Router>
+  <>
     <Switch>
-      <Route>
+      <Route path="/">
+        <Home />
+      </Route>
+      <Route path="/knot">
+        <Home />
+      </Route>
+      <Route path="/bomb">
         <Home />
       </Route>
     </Switch>
-  </Router>
+  </>
 )
