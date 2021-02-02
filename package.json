@@ -10,7 +10,7 @@
     "url": "git+ssh://github.com/maxsilvauk/silva-digital.git"
   },
   "scripts": {
-    "start": "webpack serve --open --mode development",
+    "start": "webpack serve --open --mode development FAST_REFRESH=true",
     "build": "webpack --mode production",
     "clean": "rimraf {.cache,build,node_modules}",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,7 +23,6 @@
     }
   },
   "dependencies": {
-    "@pmndrs/branding": "0.0.4",
     "@react-spring/three": "^9.0.0-rc.3",
     "@react-spring/web": "^9.0.0-rc.3",
     "@react-three/drei": "2.2.13",
@@ -35,7 +34,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.1.2",
-    "react-three-fiber": "^5.3.10",
+    "react-three-fiber": "^5.3.18",
     "three": "^0.124.0",
     "typescript": "^4.0.3",
     "wouter": "2.7.0"
@@ -49,7 +48,7 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "@babel/runtime": "^7.6.3",
-    "@hot-loader/react-dom": "^16.13.0",
+    "@hot-loader/react-dom": "^17.0.1",
     "@react-three/gltfjsx": "^3.1.4",
     "@svgr/webpack": "^5.4.0",
     "@types/mini-css-extract-plugin": "^0.9.1",

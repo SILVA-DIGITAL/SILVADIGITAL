@@ -1,8 +1,7 @@
 // @ts-nocheck
 import React, { Suspense } from 'react'
 import { Canvas } from 'react-three-fiber'
-import { Environment } from '@react-three/drei/Environment'
-import { Loader } from '@react-three/drei'
+import { Loader, Environment } from '@react-three/drei'
 import { useTransition, useSpring } from '@react-spring/core'
 import { useLocation } from 'wouter'
 import { Container, Jumbo } from './styles'

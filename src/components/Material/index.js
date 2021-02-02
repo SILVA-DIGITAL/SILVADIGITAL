@@ -5,7 +5,6 @@ export default class DistortMaterial extends MeshPhysicalMaterial {
   constructor(
     args = {
       metalness: 0.85,
-      tranparent: true,
       roughness: 0.6,
       normalScale: new THREE.Vector2(2, 2),
       transmission: 0.9,

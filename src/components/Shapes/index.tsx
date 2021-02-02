@@ -1,4 +1,4 @@
-import React, { FC, useLayoutEffect } from 'react'
+import React, { FC, useLayoutEffect, useEffect } from 'react'
 import * as THREE from 'three'
 import { a } from '@react-spring/three'
 import { Switch, Route } from 'wouter'
@@ -17,12 +17,14 @@ type GLTFResult = GLTF & {
 }
 
 const Shapes: FC = ({ transition }: any) => {
-  const { nodes } = useGLTF('/assets/models/bomb-gp.glb') as GLTFResult
   const torus = new THREE.TorusBufferGeometry(4, 1.2, 128, 128)
   const torusknot = new THREE.TorusKnotBufferGeometry(3, 0.8, 256, 16)
+  const { nodes } = useGLTF('/assets/models/bomb-gp.glb') as GLTFResult
+
   const material1 = new Material()
   const material2 = new Material()
   const material3 = new Material()
+
   const textures = useTexture([
     '/assets/images/ao.jpg',
     '/assets/images/normal.jpg',
@@ -30,10 +32,10 @@ const Shapes: FC = ({ transition }: any) => {
     '/assets/images/roughness.jpg',
   ] as any[string])
 
-  // useLayoutEffect(() => {
-  //   // @ts-ignore
-  //   textures.forEach(texture => ((texture.wrapT = texture.wrapS = THREE.RepeatWrapping), texture.repeat.set(4, 4)))
-  // }, [textures])
+  useLayoutEffect(() => {
+    // @ts-ignore
+    textures.forEach(texture => ((texture.wrapT = texture.wrapS = THREE.RepeatWrapping), texture.repeat.set(4, 4)))
+  }, [textures])
 
   return transition(({ opacity, ...props }: any, location: string) => (
     <a.group {...props}>

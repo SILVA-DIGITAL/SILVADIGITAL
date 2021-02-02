@@ -7,6 +7,8 @@ import { TsConfigPathsPlugin } from 'awesome-typescript-loader'
 
 require('dotenv').config()
 
+console.dir(process.env);
+
 const packageJson = require('./package.json')
 
 const env = dotenv.config().parsed
@@ -54,7 +56,6 @@ const config: webpack.Configuration = {
         ].filter(Boolean),
       },
       { test: /\.html$/, use: 'html-loader' },
-      { test: /\.(a?png)$/, use: 'url-loader?limit=10000' },
       {
         test: /\.(jpe?g|gif|hdr|glb|bmp|mp3|mp4|eot|ttf|woff|woff2)$/,
         use: 'file-loader',
@@ -105,7 +106,7 @@ const config: webpack.Configuration = {
     stats: 'minimal',
     clientLogLevel: 'warning',
     hot: true,
-    port: 1337
+    port: 5555
   },
 }
 
