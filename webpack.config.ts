@@ -7,8 +7,6 @@ import { TsConfigPathsPlugin } from 'awesome-typescript-loader'
 
 require('dotenv').config()
 
-console.dir(process.env);
-
 const packageJson = require('./package.json')
 
 const env = dotenv.config().parsed
