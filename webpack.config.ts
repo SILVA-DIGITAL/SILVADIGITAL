@@ -55,7 +55,7 @@ const config: webpack.Configuration = {
       },
       { test: /\.html$/, use: 'html-loader' },
       {
-        test: /\.(jpe?g|gif|hdr|glb|bmp|mp3|mp4|eot|ttf|woff|woff2)$/,
+        test: /\.(jpe?g|hdr|glb|mp3|mp4|ttf|woff|woff2)$/,
         use: 'file-loader',
       },
       {
@@ -101,7 +101,7 @@ const config: webpack.Configuration = {
       disableDotRule: true,
     },
     publicPath: '/',
-    stats: 'minimal',
+    stats: 'normal',
     clientLogLevel: 'warning',
     hot: true,
     port: 5555
