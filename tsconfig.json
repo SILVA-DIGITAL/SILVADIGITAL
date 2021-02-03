@@ -23,6 +23,7 @@
     "baseUrl": ".",
     "paths": {
       "~root/*": ["src/*"],
+      "~config/*": ["src/config/*"],
       "~components/*": ["src/components/*"],
       "~components": ["src/components"],
       "~images/*": ["src/assets/images/*"],
