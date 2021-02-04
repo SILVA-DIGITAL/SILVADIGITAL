@@ -26,9 +26,11 @@
       "~config/*": ["src/config/*"],
       "~components/*": ["src/components/*"],
       "~components": ["src/components"],
+      "~contexts/*": ["src/contexts/*"],
       "~images/*": ["src/assets/images/*"],
       "~pages/*": ["src/pages/*"],
       "~styles/*": ["src/styles/*"],
+      "~reducers/*": ["src/reducers/*"],
       "~routes/*": ["src/routes/*"],
     },
     "plugins": [{

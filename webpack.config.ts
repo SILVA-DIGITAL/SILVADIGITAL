@@ -40,6 +40,14 @@ const config: webpack.Configuration = {
   module: {
     rules: [
       {
+        test: /\.m?jsx?$/,
+        resolve: {
+          fullySpecified: false
+        },
+        // ignore transpiling JavaScript from node_modules as they should be ready to go OOTB
+        exclude: '/node_modules/',
+      },
+      {
         test: /(?<!\.d)\.tsx?$/,
         use: [
           !isProduction && {
@@ -101,7 +109,7 @@ const config: webpack.Configuration = {
       disableDotRule: true,
     },
     publicPath: '/',
-    stats: 'normal',
+    stats: 'minimal',
     clientLogLevel: 'warning',
     hot: true,
     port: 5555

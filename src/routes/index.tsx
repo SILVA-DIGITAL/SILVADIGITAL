@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useReducer, createContext } from 'react'
 import { Switch, Route } from 'wouter'
 import Home from '~pages/Home'
+import Talks from '~pages/Talks'
+import { TalksProvider } from '~contexts/talksContext'
 
 export const Routes = () => (
   <>
@@ -15,5 +17,10 @@ export const Routes = () => (
         <Home />
       </Route>
     </Switch>
+    <Route path="/talks">
+      <TalksProvider>
+        <Talks />
+      </TalksProvider>
+    </Route>
   </>
 )
