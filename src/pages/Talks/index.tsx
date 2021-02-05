@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useContext } from 'react'
 import { listTalks as ListTalks } from '../../graphql/queries'
 import { createTalk as CreateTalk } from '../../graphql/mutations'
+import { onCreateTalk as OnCreateTalk } from '../../graphql/subscriptions'
 import { API, graphqlOperation } from 'aws-amplify'
 import { v4 as uuid } from 'uuid'
 import { TalksContext } from '~contexts/talksContext'
@@ -32,6 +33,15 @@ const Talks: FC = () => {
 
   useEffect(() => {
     getData()
+
+    const subscription = API.graphql(graphqlOperation(OnCreateTalk) as any).subscribe({
+      next: (eventData: any) => {
+        const talk = eventData.value.data.onCreateTalk
+        if (talk.clientId === CLIENT_ID) return
+        talksDispatch({ type: 'ADD_TALK', talk })
+      },
+    })
+    return () => subscription.unsubscribe()
   }, [])
 
   const getData = async () => {
