@@ -10,6 +10,11 @@
       "StackName": "amplify-amplifysilvadigital-dev-140347",
       "StackId": "arn:aws:cloudformation:eu-west-1:819314181746:stack/amplify-amplifysilvadigital-dev-140347/a5371e70-6628-11eb-b37e-06ec87ed76f5",
       "AmplifyAppId": "d3alm4m0u1007m"
+    },
+    "categories": {
+      "auth": {
+        "amplifysilvadigital593d428f": {}
+      }
     }
   }
 }

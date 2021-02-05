@@ -1,11 +1,14 @@
 import React, { FC, useEffect, useContext } from 'react'
 import { listTalks as ListTalks } from '../../graphql/queries'
 import { createTalk as CreateTalk } from '../../graphql/mutations'
-import { onCreateTalk as OnCreateTalk } from '../../graphql/subscriptions'
+import { onCreateTalk as OnCreateTalk, onDeleteTalk as OnDeleteTalk } from '../../graphql/subscriptions'
 import { API, graphqlOperation } from 'aws-amplify'
+import { withAuthenticator } from 'aws-amplify-react'
 import { v4 as uuid } from 'uuid'
 import { TalksContext } from '~contexts/talksContext'
 import { ActionTypes } from '~reducers/talksReducer'
+
+import '@aws-amplify/ui/dist/style.css'
 
 interface Talk {
   id: number
@@ -35,14 +38,27 @@ const Talks: FC = () => {
     getData()
 
     // @ts-ignore - Requires rxjx package for just observable typing.
-    const subscription = API.graphql(graphqlOperation(OnCreateTalk)).subscribe({
+    const onCreateTalkSubscription = API.graphql(graphqlOperation(OnCreateTalk)).subscribe({
       next: (eventData: any) => {
         const talk = eventData.value.data.onCreateTalk
         if (talk.clientId === CLIENT_ID) return
         talksDispatch({ type: ActionTypes.ADD_TALK, talk })
       },
     })
-    return () => subscription.unsubscribe()
+
+    // @ts-ignore - Requires rxjx package for just observable typing.
+    const onDeleteTalkSubscription = API.graphql(graphqlOperation(OnDeleteTalk)).subscribe({
+      next: (eventData: any) => {
+        const talk = eventData.value.data.onDeleteTalk
+        if (talk.clientId === CLIENT_ID) return
+        talksDispatch({ type: ActionTypes.DELETE_TALK, talk })
+      },
+    })
+
+    return () => {
+      onCreateTalkSubscription.unsubscribe()
+      onDeleteTalkSubscription.unsubscribe()
+    }
   }, [])
 
   const getData = async () => {
@@ -95,4 +111,4 @@ const Talks: FC = () => {
   )
 }
 
-export default Talks
+export default withAuthenticator(Talks, true)

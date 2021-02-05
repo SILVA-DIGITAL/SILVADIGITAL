@@ -16,5 +16,13 @@
         }
       }
     }
+  },
+  "auth": {
+    "amplifysilvadigital593d428f": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
   }
 }
