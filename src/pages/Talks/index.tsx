@@ -34,11 +34,12 @@ const Talks: FC = () => {
   useEffect(() => {
     getData()
 
-    const subscription = API.graphql(graphqlOperation(OnCreateTalk) as any).subscribe({
+    // @ts-ignore - Requires rxjx package for just observable typing.
+    const subscription = API.graphql(graphqlOperation(OnCreateTalk)).subscribe({
       next: (eventData: any) => {
         const talk = eventData.value.data.onCreateTalk
         if (talk.clientId === CLIENT_ID) return
-        talksDispatch({ type: 'ADD_TALK', talk })
+        talksDispatch({ type: ActionTypes.ADD_TALK, talk })
       },
     })
     return () => subscription.unsubscribe()
