@@ -1,8 +1,8 @@
-import React, { useReducer, createContext } from 'react'
+import React from 'react'
 import { Switch, Route } from 'wouter'
+import { TalksProvider } from '~contexts/talksContext'
 import Home from '~pages/Home'
 import Talks from '~pages/Talks'
-import { TalksProvider } from '~contexts/talksContext'
 
 export const Routes = () => (
   <>

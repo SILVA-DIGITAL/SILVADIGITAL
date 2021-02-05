@@ -13,7 +13,7 @@ export const enum ActionTypes {
   ADD_TALK = 'ADD_TALK'
 }
 
-export const reducer = (state: any, action: any) => {
+export const talksReducer = (state: any, action: any) => {
   switch (action.type) {
     case ActionTypes.SET_TALKS:
       return { 

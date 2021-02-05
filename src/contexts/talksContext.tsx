@@ -1,5 +1,6 @@
 import React, { FC, createContext, Dispatch, ReactNode, useReducer } from 'react'
-import { initialState, reducer } from '~reducers/talksReducer'
+import { initialState, talksReducer } from '~reducers/talksReducer'
+import { ContextDevTool } from 'react-context-devtool'
 
 interface Talk {
   id: number
@@ -19,10 +20,11 @@ interface TalksContext {
 export const TalksContext = createContext(null as TalksContext)
 
 export const TalksProvider: FC = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(talksReducer, initialState)
 
   return (
     <TalksContext.Provider value={{ talksContext: state, talksDispatch: dispatch }}>
+      <ContextDevTool context={TalksContext} id="talksContextId" displayName="talksContext" />
       {children as React.ReactChildren}
     </TalksContext.Provider>
   )
