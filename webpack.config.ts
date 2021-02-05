@@ -44,7 +44,6 @@ const config: webpack.Configuration = {
         resolve: {
           fullySpecified: false
         },
-        // ignore transpiling JavaScript from node_modules as they should be ready to go OOTB
         exclude: '/node_modules/',
       },
       {
@@ -62,6 +61,7 @@ const config: webpack.Configuration = {
         ].filter(Boolean),
       },
       { test: /\.html$/, use: 'html-loader' },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       {
         test: /\.(jpe?g|hdr|glb|mp3|mp4|ttf|woff|woff2)$/,
         use: 'file-loader',
