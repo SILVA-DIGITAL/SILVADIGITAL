@@ -10,7 +10,8 @@ export const enum ActionTypes {
   SET_TALKS = 'SET_TALKS',
   SET_INPUT = 'SET_INPUT',
   CLEAR_INPUT = 'CLEAR_INPUT',
-  ADD_TALK = 'ADD_TALK'
+  ADD_TALK = 'ADD_TALK',
+  DELETE_TALK = 'DELETE_TALK'
 }
 
 export const talksReducer = (state: any, action: any) => {
@@ -34,6 +35,11 @@ export const talksReducer = (state: any, action: any) => {
       return { 
         ...state,
         talks: [...state.talks, action.talk]
+      }
+    case ActionTypes.DELETE_TALK:
+      return { 
+        ...state,
+        talks: state.talks.filter((talk: any) => talk.id === action.talk.id)
       }
     default:
       return state
