@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-amplifysilvadigital-dev-140347-authRole",
-      "UnauthRoleArn": "arn:aws:iam::819314181746:role/amplify-amplifysilvadigital-dev-140347-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::819314181746:role/amplify-amplifysilvadigital-dev-140347-authRole",
+      "AuthRoleName": "amplify-silvadigital-dev-22722-authRole",
+      "UnauthRoleArn": "arn:aws:iam::819314181746:role/amplify-silvadigital-dev-22722-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::819314181746:role/amplify-silvadigital-dev-22722-authRole",
       "Region": "eu-west-1",
-      "DeploymentBucketName": "amplify-amplifysilvadigital-dev-140347-deployment",
-      "UnauthRoleName": "amplify-amplifysilvadigital-dev-140347-unauthRole",
-      "StackName": "amplify-amplifysilvadigital-dev-140347",
-      "StackId": "arn:aws:cloudformation:eu-west-1:819314181746:stack/amplify-amplifysilvadigital-dev-140347/a5371e70-6628-11eb-b37e-06ec87ed76f5",
-      "AmplifyAppId": "d3alm4m0u1007m"
+      "DeploymentBucketName": "amplify-silvadigital-dev-22722-deployment",
+      "UnauthRoleName": "amplify-silvadigital-dev-22722-unauthRole",
+      "StackName": "amplify-silvadigital-dev-22722",
+      "StackId": "arn:aws:cloudformation:eu-west-1:819314181746:stack/amplify-silvadigital-dev-22722/d8f9fa10-6822-11eb-ae72-0a0179768549",
+      "AmplifyAppId": "d2qk836yvs3u6u"
     },
     "categories": {
       "auth": {
-        "amplifysilvadigital593d428f": {}
+        "silvadigitalc9191a73": {}
       }
     }
   }

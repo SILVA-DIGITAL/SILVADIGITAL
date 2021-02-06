@@ -1,6 +1,6 @@
 projects:
-  SDAPI:
-    schemaPath: amplify/backend/api/SDAPI/build/schema.graphql
+  silvadigitalAPI:
+    schemaPath: amplify/backend/api/silvadigitalAPI/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -13,6 +13,3 @@ projects:
         region: eu-west-1
         apiId: null
         maxDepth: 2
-extensions:
-  amplify:
-    version: 3
