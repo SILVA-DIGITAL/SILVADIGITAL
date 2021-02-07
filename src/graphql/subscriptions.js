@@ -10,6 +10,9 @@ export const onCreateTalk = /* GraphQL */ `
       description
       speakerName
       speakerBio
+      comments {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -24,6 +27,9 @@ export const onUpdateTalk = /* GraphQL */ `
       description
       speakerName
       speakerBio
+      comments {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -38,6 +44,72 @@ export const onDeleteTalk = /* GraphQL */ `
       description
       speakerName
       speakerBio
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateComment = /* GraphQL */ `
+  subscription OnCreateComment {
+    onCreateComment {
+      id
+      message
+      createdBy
+      talk {
+        id
+        clientId
+        name
+        description
+        speakerName
+        speakerBio
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateComment = /* GraphQL */ `
+  subscription OnUpdateComment {
+    onUpdateComment {
+      id
+      message
+      createdBy
+      talk {
+        id
+        clientId
+        name
+        description
+        speakerName
+        speakerBio
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteComment = /* GraphQL */ `
+  subscription OnDeleteComment {
+    onDeleteComment {
+      id
+      message
+      createdBy
+      talk {
+        id
+        clientId
+        name
+        description
+        speakerName
+        speakerBio
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

@@ -10,6 +10,9 @@ export const getTalk = /* GraphQL */ `
       description
       speakerName
       speakerBio
+      comments {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -29,6 +32,45 @@ export const listTalks = /* GraphQL */ `
         description
         speakerName
         speakerBio
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getComment = /* GraphQL */ `
+  query GetComment($id: ID!) {
+    getComment(id: $id) {
+      id
+      message
+      createdBy
+      talk {
+        id
+        clientId
+        name
+        description
+        speakerName
+        speakerBio
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listComments = /* GraphQL */ `
+  query ListComments(
+    $filter: ModelCommentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        message
+        createdBy
         createdAt
         updatedAt
       }

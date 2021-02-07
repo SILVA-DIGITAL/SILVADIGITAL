@@ -40,6 +40,7 @@ const Talks: FC = () => {
     // @ts-ignore - Requires rxjx package for just observable typing.
     const onCreateTalkSubscription = API.graphql(graphqlOperation(OnCreateTalk)).subscribe({
       next: (eventData: any) => {
+        console.log('we ge there')
         const talk = eventData.value.data.onCreateTalk
         if (talk.clientId === CLIENT_ID) return
         talksDispatch({ type: ActionTypes.ADD_TALK, talk })
