@@ -16,3 +16,14 @@ type Comment
   createdBy: String
   talk: Talk @connection(name: "TalkComments")
 }
+
+type Coin {
+  id: String!
+  name: String!
+  symbol: String!
+  price_usd: String!
+}
+
+type Query {
+  getCoins(limit: Int, start: Int): [Coin] @function(name: "currencyfunction-${env}")
+}

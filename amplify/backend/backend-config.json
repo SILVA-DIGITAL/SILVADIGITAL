@@ -23,5 +23,12 @@
         }
       }
     }
+  },
+  "function": {
+    "currencyfunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
   }
 }
